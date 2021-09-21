@@ -1,7 +1,6 @@
 package com.example.springproject.resources;
 
 import com.example.springproject.domain.Categoria;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
