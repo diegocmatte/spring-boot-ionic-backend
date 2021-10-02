@@ -1,6 +1,7 @@
 package com.example.springproject.services;
 
 import com.example.springproject.domain.Categoria;
+import com.example.springproject.dto.CategoriaDTO;
 import com.example.springproject.repositories.CategoriaRepository;
 import com.example.springproject.services.exceptions.DataIntegrityException;
 import com.example.springproject.services.exceptions.ObjectNotFoundException;
@@ -52,5 +53,9 @@ public class CategoriaService {
     public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
         PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return categoriaRepository.findAll(pageRequest);
+    }
+
+    public Categoria fromDTO(CategoriaDTO categoriaDTO){
+        return new Categoria(categoriaDTO.getId(), categoriaDTO.getNome());
     }
 }
