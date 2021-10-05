@@ -27,15 +27,15 @@ public class CategoriaService {
                 () -> new ObjectNotFoundException("Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
     }
 
-    public Categoria insert(Categoria obj){
-        Categoria newObj = find(obj.getId());
-        updateData(newObj, obj);
+    public Categoria insert(Categoria obj) {
+        obj.setId(null);
         return categoriaRepository.save(obj);
     }
 
-    public Categoria update(Categoria obj){
-        find(obj.getId());
-        return categoriaRepository.save(obj);
+    public Categoria update(Categoria obj) {
+        Categoria newObj = find(obj.getId());
+        updateData(newObj, obj);
+        return categoriaRepository.save(newObj);
     }
 
     public void delete(Integer id){
