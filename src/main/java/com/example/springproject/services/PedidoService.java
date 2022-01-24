@@ -3,7 +3,6 @@ package com.example.springproject.services;
 import com.example.springproject.domain.ItemPedido;
 import com.example.springproject.domain.PagamentoComBoleto;
 import com.example.springproject.domain.Pedido;
-import com.example.springproject.domain.Produto;
 import com.example.springproject.domain.enums.EstadoPagamento;
 import com.example.springproject.repositories.ItemPedidoRepository;
 import com.example.springproject.repositories.PagamentoRepository;

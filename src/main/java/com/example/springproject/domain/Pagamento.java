@@ -1,7 +1,6 @@
 package com.example.springproject.domain;
 
 import com.example.springproject.domain.enums.EstadoPagamento;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import javax.persistence.*;

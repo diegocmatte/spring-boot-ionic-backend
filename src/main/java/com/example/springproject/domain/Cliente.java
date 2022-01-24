@@ -1,7 +1,6 @@
 package com.example.springproject.domain;
 
 import com.example.springproject.domain.enums.TipoCliente;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
