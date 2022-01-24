@@ -3,6 +3,7 @@ package com.example.springproject.services;
 import com.example.springproject.domain.ItemPedido;
 import com.example.springproject.domain.PagamentoComBoleto;
 import com.example.springproject.domain.Pedido;
+import com.example.springproject.domain.Produto;
 import com.example.springproject.domain.enums.EstadoPagamento;
 import com.example.springproject.repositories.ItemPedidoRepository;
 import com.example.springproject.repositories.PagamentoRepository;
@@ -33,6 +34,9 @@ public class PedidoService {
     @Autowired
     private ItemPedidoRepository itemPedidoRepository;
 
+    @Autowired
+    private ClienteService clienteService;
+
     public Pedido find(Integer id){
         Optional<Pedido> cliente = pedidoRepository.findById(id);
         return cliente.orElseThrow(
@@ -43,6 +47,7 @@ public class PedidoService {
     public Pedido insert(Pedido obj){
         obj.setId(null);
         obj.setInstante(new Date());
+        obj.setCliente(clienteService.find(obj.getCliente().getId()));
         obj.getPagamento().setEstadoPagamento(EstadoPagamento.PENDENTE);
         obj.getPagamento().setPedido(obj);
 
@@ -55,11 +60,13 @@ public class PedidoService {
         pagamentoRepository.save(obj.getPagamento());
         for (ItemPedido ip : obj.getItens()) {
             ip.setDesconto(0.0);
-            ip.setPreco(produtoService.find(ip.getProduto().getId()).getPreco());
+            ip.setProduto(produtoService.find(ip.getProduto().getId()));
+            ip.setPreco(ip.getProduto().getPreco());
             ip.setPedido(obj);
         }
-        itemPedidoRepository.saveAll(obj.getItens());
 
+        itemPedidoRepository.saveAll(obj.getItens());
+        System.out.println(obj);
         return obj;
 
     }
